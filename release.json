@@ -1,0 +1,11 @@
+{
+  "format": 1,
+  "repository": "VIPserver-Team/VPN-Plus",
+  "tag": "accounting-pro-17f4ef7",
+  "commit": "17f4ef7c3463d97601c6a4566bb218973f0e355a",
+  "asset": "accounting-pro-17f4ef7c3463d97601c6a4566bb218973f0e355a.tar.gz",
+  "sha256": "4794e1ebff73c9450557081721c7fc1f85fa2d4c4402949e0830a983cf89814b",
+  "source_digest": "c8b0cf6885e69b5a7c24401ef14dcaffa3a6d8b7dc2ac9528c7186ecc4f89906",
+  "files": 599,
+  "bytes": 3008778
+}
