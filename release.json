@@ -1,13 +1,13 @@
 {
   "format": 2,
-  "version": "3.0.0",
-  "tag": "accounting-pro-v3",
-  "application_commit": "80073c5dfddaf73a842a1e01d2dbb7a1e39cb3d1",
+  "version": "3.1.0",
+  "tag": "accounting-pro-v3.1",
+  "application_commit": "d6df2dcdf82e795c41f5f88077fd3a5e746c130d",
   "minimum_bootstrap_version": 3,
-  "asset": "accounting-pro-80073c5dfddaf73a842a1e01d2dbb7a1e39cb3d1.tar.gz",
-  "asset_url": "https://github.com/VIPserver-Team/Accounting-Pro-Installer/releases/download/accounting-pro-v3/accounting-pro-80073c5dfddaf73a842a1e01d2dbb7a1e39cb3d1.tar.gz",
-  "sha256": "ea0ea46a89167c1a8596d7b339385ad96019f49525ec34a0442134068029e52a",
-  "source_digest": "a8819179374aaba8043eb3fb596d4b0667c1865b8ad518489b0c72d237adb64b",
+  "asset": "accounting-pro-d6df2dcdf82e795c41f5f88077fd3a5e746c130d.tar.gz",
+  "asset_url": "https://github.com/VIPserver-Team/Accounting-Pro-Installer/releases/download/accounting-pro-v3.1/accounting-pro-d6df2dcdf82e795c41f5f88077fd3a5e746c130d.tar.gz",
+  "sha256": "ea12e5935913718e72bb40981a08a13230b1ad7016b37c8e2d133f5469f84bee",
+  "source_digest": "7c79f37dfcbc8b28fbd76b2a3ed0106f7b80e7a0548e9ed6fcbc667a6cfb23c9",
   "files": 597,
-  "bytes": 3017827
+  "bytes": 3017970
 }
