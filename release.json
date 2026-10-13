@@ -1,11 +1,13 @@
 {
-  "format": 1,
-  "repository": "VIPserver-Team/VPN-Plus",
-  "tag": "accounting-pro-17f4ef7",
-  "commit": "17f4ef7c3463d97601c6a4566bb218973f0e355a",
-  "asset": "accounting-pro-17f4ef7c3463d97601c6a4566bb218973f0e355a.tar.gz",
-  "sha256": "4794e1ebff73c9450557081721c7fc1f85fa2d4c4402949e0830a983cf89814b",
-  "source_digest": "c8b0cf6885e69b5a7c24401ef14dcaffa3a6d8b7dc2ac9528c7186ecc4f89906",
-  "files": 599,
-  "bytes": 3008778
+  "format": 2,
+  "version": "2.0.0",
+  "tag": "accounting-pro-v2",
+  "application_commit": "2add6bc71a536071d8b23d2977c4b440cc8d02ee",
+  "minimum_bootstrap_version": 2,
+  "asset": "accounting-pro-2add6bc71a536071d8b23d2977c4b440cc8d02ee.tar.gz",
+  "asset_url": "https://github.com/VIPserver-Team/Accounting-Pro-Installer/releases/download/accounting-pro-v2/accounting-pro-2add6bc71a536071d8b23d2977c4b440cc8d02ee.tar.gz",
+  "sha256": "50a1ee974c76618a1809eacc544742d693a129d6624cb03234c05cb64d3471bc",
+  "source_digest": "2892cd13439816977c5dab032dcc14dd9dcd8f4c52d34ce24bc913aff14ecb9c",
+  "files": 592,
+  "bytes": 3000332
 }

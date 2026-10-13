@@ -1,21 +1,19 @@
-# Accounting Pro installer
+# Accounting Pro
 
-ACCOUNTING PRO — Crate By VIPServer Team
+Created by VIPServer Team
 
-Supports Ubuntu 24.04 LTS x86_64. Run on a fresh server as root/sudo. Python 3 and curl must be installed. Interactive terminal required.
-
-This repository contains only the bootstrap and a pinned release manifest. The Accounting Pro application remains in a private repository. Installation requires your own GitHub fine-grained token with **Contents: read** permission for `VIPserver-Team/VPN-Plus`, approved for the organization if required. A public bootstrap does not grant private application access. Enter the token at the hidden prompt; never put it in the command, environment, logs or configuration files. The bootstrap uses it in memory for the GitHub Releases API and does not retain it.
-
-Installation command (pinned bootstrap release `bootstrap-v1.1`):
+Install on a fresh **Ubuntu 24.04 LTS x86_64** server from an interactive terminal:
 
 ```sh
-sudo bash -c 'd=$(mktemp -d /tmp/accounting-pro.XXXXXXXX) || exit; trap "rm -rf $d" EXIT; curl -fsSL --proto "=https" https://raw.githubusercontent.com/VIPserver-Team/Accounting-Pro-Installer/bootstrap-v1.1/install.sh -o "$d/install.sh" && bash "$d/install.sh"'
+curl -fsSL https://raw.githubusercontent.com/VIPserver-Team/Accounting-Pro-Installer/main/install.sh | sudo bash
 ```
 
-The bootstrap verifies the private release archive SHA-256, validates archive entries, and verifies the intended application commit and source digest before invoking the official application installer. English/Persian menus, initial Owner credentials and installation management are supplied by that installer. Dependency downloads still require internet access.
+**No GitHub token, GitHub login or private repository access is required.** The bootstrap downloads an immutable public release manifest and public runtime archive, verifies its SHA-256, exact application commit and canonical source digest, and then starts the normal setup wizard. Download and verification do not read stdin or require `/dev/tty`; only the interactive setup wizard uses terminal input when the installer is piped to Bash.
 
-The release is pinned; updates require a reviewed new manifest and bootstrap release. Protect published release tags against changes. Run `accounting-pro` for post-install management. The private bundle includes deployable Python and frontend source; authorized recipients can inspect that source. No mechanism here conceals code from administrators who install it.
+Terminal output is English-only. Persian remains available in the Web UI. Choose your Owner username and hidden password, configure the domain and panel port, and choose Let's Encrypt, an existing certificate or SSL later. Without SSL the panel stays local; use an SSH tunnel until HTTPS is configured. Run `sudo accounting-pro` for post-install management.
 
-Real public DNS and Let's Encrypt validation: PENDING. A public domain and suitable disposable test server are required.
+The manifest specifies the release version, public asset URL, SHA-256, exact application commit, source digest and minimum bootstrap version. Invalid manifests, unsupported systems, missing downloads, checksum mismatches and unsafe/corrupt archives stop installation. Ubuntu repositories, GitHub, PyPI, npm and nodejs.org must be reachable. Bootstrap prerequisites are installed from the existing Ubuntu repositories if needed.
 
-Validation: the exact command above completed on a freshly created Ubuntu 24.04 x86_64 VM using a disposable read-only token. Private release integrity and installed commit/source digest matched; the frontend, Owner login and all required services passed. Doctor returned **0 FAIL** (four expected warnings for deferred SSL, backups and unwired external adapters). File/log/history and process audits found no retained GitHub tokens; bootstrap temporary directories were removed. Domain resolution was simulated locally; real public DNS and Let's Encrypt validation remain **PENDING**.
+The public asset contains only the installable runtime/application source, pinned dependency metadata, required installer/update helpers and frontend assets. It excludes repository history, GitHub configuration, operational configuration, databases, backups, tests, lab/developer helpers, credentials and private infrastructure references. The full VPN-Plus repository remains private. Public runtime files/source are intentionally distributed in the release asset.
+
+Real public DNS and Let's Encrypt issuance/renewal validation remain **PENDING** until a suitable disposable public domain/server is available. Local DNS simulation and self-signed certificates do not establish public ACME qualification.
