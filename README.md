@@ -17,3 +17,5 @@ The bootstrap verifies the private release archive SHA-256, validates archive en
 The release is pinned; updates require a reviewed new manifest and bootstrap release. Protect published release tags against changes. Run `accounting-pro` for post-install management. The private bundle includes deployable Python and frontend source; authorized recipients can inspect that source. No mechanism here conceals code from administrators who install it.
 
 Real public DNS and Let's Encrypt validation: PENDING. A public domain and suitable disposable test server are required.
+
+Validation: the exact command above completed on a freshly created Ubuntu 24.04 x86_64 VM using a disposable read-only token. Private release integrity and installed commit/source digest matched; the frontend, Owner login and all required services passed. Doctor returned **0 FAIL** (four expected warnings for deferred SSL, backups and unwired external adapters). File/log/history and process audits found no retained GitHub tokens; bootstrap temporary directories were removed. Domain resolution was simulated locally; real public DNS and Let's Encrypt validation remain **PENDING**.
