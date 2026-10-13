@@ -7,7 +7,7 @@ command -v python3 >/dev/null && command -v curl >/dev/null || { echo 'python3 a
 umask 077
 d=$(mktemp -d /tmp/accounting-pro-bootstrap.XXXXXXXX)
 trap 'rm -rf "$d"' EXIT
-base=https://raw.githubusercontent.com/VIPserver-Team/Accounting-Pro-Installer/bootstrap-v1
+base=https://raw.githubusercontent.com/VIPserver-Team/Accounting-Pro-Installer/bootstrap-v1.1
 curl --fail --silent --show-error --proto '=https' --tlsv1.2 "$base/bootstrap.py" -o "$d/bootstrap.py"
 curl --fail --silent --show-error --proto '=https' --tlsv1.2 "$base/release.json" -o "$d/release.json"
 python3 "$d/bootstrap.py" "$@"

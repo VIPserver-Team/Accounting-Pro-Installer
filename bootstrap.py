@@ -10,6 +10,7 @@ import sys
 import tarfile
 import tempfile
 import urllib.request
+import warnings
 from urllib.parse import urlparse
 
 RELEASE = json.loads((Path(__file__).parent / 'release.json').read_text())
@@ -78,8 +79,14 @@ def main():
         raise RuntimeError('Ubuntu 24.04 x86_64 is required.')
     print('ACCOUNTING PRO\nCrate By VIPServer Team', flush=True)
     print('Private release access: enter your own GitHub token with Contents: read permission.\nدسترسی نسخه خصوصی: توکن گیت‌هاب خود را با مجوز خواندن Contents وارد کنید.', flush=True)
-    with open('/dev/tty', 'r+') as tty:
-        token = getpass.getpass('GitHub token / توکن گیت‌هاب: ', stream=tty)
+    if not os.isatty(0):
+        raise RuntimeError('An interactive terminal is required for hidden token entry.')
+    # getpass opens /dev/tty for input itself. The prompt stream is write-only:
+    # buffered read/write mode cannot be used on a non-seekable terminal.
+    with open('/dev/tty', 'w', encoding='utf-8') as tty:
+        with warnings.catch_warnings():
+            warnings.simplefilter('error', getpass.GetPassWarning)
+            token = getpass.getpass('GitHub token / توکن گیت‌هاب: ', stream=tty)
     if not token or any(c in token for c in '\r\n'):
         raise ValueError('A valid GitHub token is required')
     try:
@@ -101,6 +108,6 @@ def main():
 if __name__ == '__main__':
     try:
         main()
-    except (RuntimeError, ValueError, OSError, subprocess.CalledProcessError):
+    except (RuntimeError, ValueError, OSError, subprocess.CalledProcessError, getpass.GetPassWarning):
         print('Accounting Pro bootstrap failed. Verify OS, GitHub access, release availability and checksum.\nراه‌اندازی ناموفق بود؛ سیستم‌عامل، دسترسی گیت‌هاب و نسخه را بررسی کنید.', file=sys.stderr)
         sys.exit(1)
