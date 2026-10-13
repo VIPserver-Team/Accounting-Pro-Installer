@@ -1,19 +1,21 @@
-# Accounting Pro
+# Accounting Pro — guided web setup
 
 Created by VIPServer Team
 
-Install on a fresh **Ubuntu 24.04 LTS x86_64** server from an interactive terminal:
+Run on Ubuntu 24.04 LTS x86_64 as root/sudo:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/VIPserver-Team/Accounting-Pro-Installer/main/install.sh | sudo bash
 ```
 
-**No GitHub token, GitHub login or private repository access is required.** The bootstrap downloads an immutable public release manifest and public runtime archive, verifies its SHA-256, exact application commit and canonical source digest, and then starts the normal setup wizard. Download and verification do not read stdin or require `/dev/tty`; only the interactive setup wizard uses terminal input when the installer is piped to Bash.
+No GitHub token or private repository access is needed. The bootstrap verifies a pinned public runtime archive, then starts an owned web setup service. Terminal messages stay English. The web wizard defaults to Persian with real RTL, bundled licensed Persian fonts, mobile layout, English switching and light/dark appearance.
 
-Terminal output is English-only. Persian remains available in the Web UI. Choose your Owner username and hidden password, configure the domain and panel port, and choose Let's Encrypt, an existing certificate or SSL later. Without SSL the panel stays local; use an SSH tunnel until HTTPS is configured. Run `sudo accounting-pro` for post-install management.
+The terminal gives the secure SSH-tunnel command, local setup URL and a private one-time setup code. Keep the code private; never enter your SSH password into the web page. The setup service binds only to localhost and is not exposed publicly. After opening the tunnel, follow the browser wizard: welcome, server checks, safe installation mode, Owner settings and panel access.
 
-The manifest specifies the release version, public asset URL, SHA-256, exact application commit, source digest and minimum bootstrap version. Invalid manifests, unsupported systems, missing downloads, checksum mismatches and unsafe/corrupt archives stop installation. Ubuntu repositories, GitHub, PyPI, npm and nodejs.org must be reachable. Bootstrap prerequisites are installed from the existing Ubuntu repositories if needed.
+Choose **IP only**, **domain without SSL**, or **domain with Let's Encrypt**. Domain and SSL are optional. A DNS mismatch warns and retains IP access; it does not prevent installation. For access without HTTPS, use an SSH tunnel for administrator login until HTTPS is configured.
 
-The public asset contains only the installable runtime/application source, pinned dependency metadata, required installer/update helpers and frontend assets. It excludes repository history, GitHub configuration, operational configuration, databases, backups, tests, lab/developer helpers, credentials and private infrastructure references. The full VPN-Plus repository remains private. Public runtime files/source are intentionally distributed in the release asset.
+Installation runs in a separate systemd job, with protected durable checkpoints and a secret-free stage journal. Closing SSH or the browser does not terminate it. Reconnect and run the same public command: the existing job/status is detected; failed stages can safely resume. Existing owned data and administrator identities are preserved. Interrupted Debian packages are repaired without deleting lock files or automatically restarting SSH.
 
-Real public DNS and Let's Encrypt issuance/renewal validation remain **PENDING** until a suitable disposable public domain/server is available. Local DNS simulation and self-signed certificates do not establish public ACME qualification.
+The progress page shows 14 stages, concise explanations, retry/resume and optional technical details. The success page shows the panel URL, Owner username, SSL choice and health summary, never the password. `sudo accounting-pro` opens post-install management.
+
+The public manifest pins release version, URL, SHA-256, application commit, source digest and minimum bootstrap version. Unsafe/corrupt archives, missing assets, wrong manifests and unsupported systems fail closed. Only audited runtime/application source and required assets are released; the full VPN-Plus repository, Git history, private configuration, credentials and backups remain private.

@@ -15,7 +15,7 @@ fi
 d=$(mktemp -d /tmp/accounting-pro-bootstrap.XXXXXXXX)
 trap 'rm -rf "$d"' EXIT
 trap 'echo "Installation stopped; no success claimed." >&2' ERR
-base=https://raw.githubusercontent.com/VIPserver-Team/Accounting-Pro-Installer/bootstrap-v2
+base=https://raw.githubusercontent.com/VIPserver-Team/Accounting-Pro-Installer/bootstrap-v3
 curl --fail --silent --show-error --proto '=https' --tlsv1.2 "$base/bootstrap.py" -o "$d/bootstrap.py"
 curl --fail --silent --show-error --proto '=https' --tlsv1.2 "$base/release.json" -o "$d/release.json"
 python3 "$d/bootstrap.py" "$@"

@@ -13,7 +13,7 @@ import tempfile
 import urllib.request
 from urllib.parse import urlparse
 
-BOOTSTRAP_VERSION = 2
+BOOTSTRAP_VERSION = 3
 MAX_BYTES = 32 * 1024 * 1024
 PUBLIC_REPO = 'VIPserver-Team/Accounting-Pro-Installer'
 ALLOWED_HOSTS = {'github.com', 'raw.githubusercontent.com', 'release-assets.githubusercontent.com'}
@@ -104,23 +104,15 @@ def main():
         destination = Path(tmp)
         unpack(data, destination, release)
         print('Checksum PASS. Application commit and source digest PASS.', flush=True)
-        print('Installing Accounting Pro...', flush=True)
+        print('Preparing resumable web setup...', flush=True)
         env = dict(os.environ, VPNPLUS_INSTALL_LANGUAGE='en')
         for name in ('GH_TOKEN', 'GITHUB_TOKEN', 'GITHUB_PAT'):
             env.pop(name, None)
-        command = ['bash', str(destination / 'install.sh'), *sys.argv[1:]]
-        # Download and integrity verification never require a terminal. Only the
-        # normal setup wizard needs interactive input when bash stdin is a pipe.
-        if os.isatty(0) or '--preflight' in sys.argv[1:]:
-            subprocess.run(command, check=True, cwd=destination, env=env)
+        if '--preflight' in sys.argv[1:]:
+            subprocess.run(['bash',str(destination/'install.sh'),'--preflight'],check=True,cwd=destination,env=env)
         else:
-            try:
-                terminal = open('/dev/tty', 'rb', buffering=0)
-            except OSError:
-                raise RuntimeError('Run the setup wizard from an interactive terminal.') from None
-            with terminal:
-                subprocess.run(command, check=True, cwd=destination, env=env, stdin=terminal)
-    print('Installation completed.', flush=True)
+            subprocess.run([sys.executable,'-m','deploy.setup_web'],check=True,cwd=destination,env=env)
+    print('Setup is ready. Finish the guided web wizard; reconnect safely if SSH disconnects.', flush=True)
 
 if __name__ == '__main__':
     try:
