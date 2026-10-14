@@ -19,3 +19,5 @@ Installation runs in a separate systemd job, with protected durable checkpoints 
 The progress page shows 14 stages, concise explanations, retry/resume and optional technical details. The success page shows the panel URL, Owner username, SSL choice and health summary, never the password. `sudo accounting-pro` opens post-install management.
 
 The public manifest pins release version, URL, SHA-256, application commit, source digest and minimum bootstrap version. Unsafe/corrupt archives, missing assets, wrong manifests and unsupported systems fail closed. Only audited runtime/application source and required assets are released; the full VPN-Plus repository, Git history, private configuration, credentials and backups remain private.
+
+After completion, running the same command again verifies the current public release and uses the canonical backup/update path if an update is needed, preserving data and administrator identities. Completed setup units are disabled for boot; completed re-entry closes the protected setup gateway and removes enrollment material.
